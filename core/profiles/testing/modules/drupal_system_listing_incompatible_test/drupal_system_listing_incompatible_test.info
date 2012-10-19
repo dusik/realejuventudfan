@@ -8,9 +8,9 @@ version = VERSION
 core = 6.x
 hidden = TRUE
 
-; Information added by drupal.org packaging script on 2012-10-18
+; Information added by drupal.org packaging script on 2012-10-19
 version = "8.x-dev"
 core = "8.x"
 project = "drupal"
-datestamp = "1350521165"
+datestamp = "1350650902"
 

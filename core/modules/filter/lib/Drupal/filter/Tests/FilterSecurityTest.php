@@ -24,7 +24,7 @@ class FilterSecurityTest extends WebTestBase {
   public static function getInfo() {
     return array(
       'name' => 'Security',
-      'description' => 'Test the behavior of check_markup() when a filter or text format vanishes.',
+      'description' => 'Test the behavior of check_markup() when a filter or text format vanishes, or when check_markup() is called in such a way that it is instructed to skip all filters of the "FILTER_TYPE_HTML_RESTRICTOR" type.',
       'group' => 'Filter',
     );
   }
@@ -39,6 +39,12 @@ class FilterSecurityTest extends WebTestBase {
     $filtered_html_format = array(
       'format' => 'filtered_html',
       'name' => 'Filtered HTML',
+      'filters' => array(
+        // Note that the filter_html filter is of the type FILTER_TYPE_HTML_RESTRICTOR.
+        'filter_html' => array(
+          'status' => 1,
+        ),
+      )
     );
     $filtered_html_format = (object) $filtered_html_format;
     filter_format_save($filtered_html_format);
@@ -62,7 +68,7 @@ class FilterSecurityTest extends WebTestBase {
     $body_raw = $node->body[LANGUAGE_NOT_SPECIFIED][0]['value'];
     $format_id = $node->body[LANGUAGE_NOT_SPECIFIED][0]['format'];
     $this->drupalGet('node/' . $node->nid);
-    $this->assertText($body_raw, t('Node body found.'));
+    $this->assertText($body_raw, 'Node body found.');
 
     // Enable the filter_test_replace filter.
     $edit = array(
@@ -72,14 +78,24 @@ class FilterSecurityTest extends WebTestBase {
 
     // Verify that filter_test_replace filter replaced the content.
     $this->drupalGet('node/' . $node->nid);
-    $this->assertNoText($body_raw, t('Node body not found.'));
-    $this->assertText('Filter: Testing filter', t('Testing filter output found.'));
+    $this->assertNoText($body_raw, 'Node body not found.');
+    $this->assertText('Filter: Testing filter', 'Testing filter output found.');
 
     // Disable the text format entirely.
     $this->drupalPost('admin/config/content/formats/' . $format_id . '/disable', array(), t('Disable'));
 
     // Verify that the content is empty, because the text format does not exist.
     $this->drupalGet('node/' . $node->nid);
-    $this->assertNoText($body_raw, t('Node body not found.'));
+    $this->assertNoText($body_raw, 'Node body not found.');
+  }
+
+  /**
+   * Tests that security filters are enforced even when marked to be skipped.
+   */
+  function testSkipSecurityFilters() {
+    $text = "Text with some disallowed tags: <script />, <em><object>unicorn</object></em>, <i><table></i>.";
+    $expected_filtered_text = "Text with some disallowed tags: , <em>unicorn</em>, .";
+    $this->assertEqual(check_markup($text, 'filtered_html', '', FALSE, array()), $expected_filtered_text, 'Expected filter result.');
+    $this->assertEqual(check_markup($text, 'filtered_html', '', FALSE, array(FILTER_TYPE_HTML_RESTRICTOR)), $expected_filtered_text, 'Expected filter result, even when trying to disable filters of the FILTER_TYPE_HTML_RESTRICTOR type.');
   }
 }
