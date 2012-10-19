@@ -1,0 +1,12 @@
+name = Breakpoint test theme
+description = Test theme for breakpoint.
+core = 8.x
+base theme = bartik
+hidden = TRUE
+
+; Information added by drupal.org packaging script on 2012-10-18
+version = "8.x-dev"
+core = "8.x"
+project = "drupal"
+datestamp = "1350521165"
+

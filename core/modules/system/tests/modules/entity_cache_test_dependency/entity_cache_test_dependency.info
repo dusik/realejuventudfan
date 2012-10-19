@@ -1,0 +1,13 @@
+name = "Entity cache test dependency"
+description = "Support dependency module for testing entity cache."
+package = Testing
+version = VERSION
+core = 8.x
+hidden = TRUE
+
+; Information added by drupal.org packaging script on 2012-10-18
+version = "8.x-dev"
+core = "8.x"
+project = "drupal"
+datestamp = "1350521165"
+

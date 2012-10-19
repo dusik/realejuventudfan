@@ -1,0 +1,11 @@
+name = Theme test with invalid theme engine
+description = Test theme which has a non-existent theme engine.
+core = 8.x
+hidden = TRUE
+engine = not_real_engine
+; Information added by drupal.org packaging script on 2012-10-18
+version = "8.x-dev"
+core = "8.x"
+project = "drupal"
+datestamp = "1350521165"
+

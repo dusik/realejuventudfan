@@ -1,0 +1,17 @@
+name = Disabled locale test
+description = Disabled support module for locale module testing.
+package = Testing
+version = VERSION
+core = 8.x
+hidden = TRUE
+project = locale_test_disabled
+
+; Definitions for interface translation.
+interface translation project = locale_test_disabled
+
+; Information added by drupal.org packaging script on 2012-10-18
+version = "8.x-dev"
+core = "8.x"
+project = "drupal"
+datestamp = "1350521165"
+

@@ -1,0 +1,15 @@
+name = Book
+description = Allows users to create and organize related content in an outline.
+package = Core
+version = VERSION
+core = 8.x
+dependencies[] = node
+configure = admin/content/book/settings
+stylesheets[all][] = book.theme.css
+
+; Information added by drupal.org packaging script on 2012-10-18
+version = "8.x-dev"
+core = "8.x"
+project = "drupal"
+datestamp = "1350521165"
+

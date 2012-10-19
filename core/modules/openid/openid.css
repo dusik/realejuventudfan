@@ -1,0 +1,23 @@
+input[name="openid_identifier"] {
+  background-image: url("login-bg.png");
+  background-position: left 50%; /* LTR */
+  background-repeat: no-repeat;
+  padding-left: 20px; /* LTR */
+}
+.js form.user-login-block.openid-login-form {
+  display: none;
+}
+form.user-login-block a.openid-link,
+form.user-login-block a.user-link {
+  display: none;
+}
+.js form.user-login-block a.openid-link,
+.js form.user-login-block a.user-link {
+  display: block;
+}
+form.user-login-block a.openid-link {
+  background-image: url("login-bg.png");
+  background-position: left top; /* LTR */
+  background-repeat: no-repeat;
+  padding: 0 0 0 1.5em; /* LTR */
+}

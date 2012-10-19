@@ -1,0 +1,14 @@
+name = Minimal
+description = Build a custom site without pre-configured functionality. Suitable for advanced users.
+version = VERSION
+core = 8.x
+dependencies[] = node
+dependencies[] = block
+dependencies[] = dblog
+
+; Information added by drupal.org packaging script on 2012-10-18
+version = "8.x-dev"
+core = "8.x"
+project = "drupal"
+datestamp = "1350521165"
+

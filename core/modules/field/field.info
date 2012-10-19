@@ -1,0 +1,15 @@
+name = Field
+description = Field API to add fields to entities like nodes and users.
+package = Core
+version = VERSION
+core = 8.x
+dependencies[] = field_sql_storage
+required = TRUE
+stylesheets[all][] = theme/field.css
+
+; Information added by drupal.org packaging script on 2012-10-18
+version = "8.x-dev"
+core = "8.x"
+project = "drupal"
+datestamp = "1350521165"
+
